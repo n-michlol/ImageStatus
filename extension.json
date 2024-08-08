@@ -1,0 +1,50 @@
+{
+	"name": "ImageStatus",
+	"author": [
+		"Moti"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:ImageStatus",
+	"descriptionmsg": "ImageStatus-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.41.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\ImageStatus\\": "src/"
+	},
+	"config": {
+		"ImageStatusEnableFoo": {
+			"description": "Enable the Foo feature.",
+			"value": true
+		}
+	},
+	"HookHandlers": {
+		"ImageStatusHooks": {
+			"class": "MediaWiki\\Extension\\ImageStatus\\Hooks"
+		}
+	},
+	"Hooks": {
+		"BeforeParserFetchFileAndTitle": "ImageStatusHooks",
+		"BeforePageDisplay": "ImageStatusHooks",
+		"GetPreferences": "ImageStatusHooks"
+	},
+	"MessagesDirs": {
+		"ImageStatus": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.ImageStatus": {
+			"localBasePath": "resources/ext.ImageStatus",
+			"remoteExtPath": "ImageStatus/resources/ext.ImageStatus",
+			"dependencies": [],
+			"styles": [],
+			"packageFiles": [
+				"init.js"
+			],
+			"messages": []
+		}
+	},
+	"manifest_version": 2
+}
