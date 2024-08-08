@@ -38,15 +38,18 @@ class Hooks implements ImageBeforeProduceHTMLHook, BeforePageDisplayHook, GetPre
 	 */
 	public function onImageBeforeProduceHTML( $linker, &$title, &$file, &$frameParams, &$handlerParams, &$time, &$res, $parser, &$query, &$widthOption ) {
 		wfDebugLog('ImageStatus', "onImageBeforeProduceHTML: Processing image: ". $widthOption);
+		$parserOutput = $parser->getOutput();
 		/*
 		$status = $this->getImageStatus($file) ?? false;
 		if ( $status == "block" ) {
+			$parserOutput->addCategory('דפים עם תמונות חסומות');
 			$html = '<div style="color:red; font-weight:bold;">Image blocked</div>';
             $res = $html;
             return false;
 		}
 		if (!$status) {
 			$frameParams['class'] = "image-status-unknown";
+			$parserOutput->addCategory('דפים עם תמונות שלא נבדקו');
 		}
 			*/
 	}
