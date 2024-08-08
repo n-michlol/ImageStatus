@@ -26,15 +26,13 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\DummyLinker;
 use MediaWiki\Title\Title;
 use Parser;
+use MediaWiki\Output\OutputPage;
 use Wikimedia\Parsoid\Ext\JSON\JSON;
 
 class Hooks implements ImageBeforeProduceHTMLHook, BeforePageDisplayHook, GetPreferencesHook {
 
 	/**
      * @see https://www.mediawiki.org/wiki/Manual:Hooks/ImageBeforeProduceHTML
-     * @param string &$html
-     * @param array &$args
-     * @param \Image $image
 	 */
 	public function onImageBeforeProduceHTML( $linker, &$title, &$file, &$frameParams, &$handlerParams, &$time, &$res, $parser, &$query, &$widthOption ) {
 		wfDebugLog('ImageStatus', "onImageBeforeProduceHTML: Processing image: ". $widthOption);
@@ -56,10 +54,16 @@ class Hooks implements ImageBeforeProduceHTMLHook, BeforePageDisplayHook, GetPre
 
 	/**
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
-	 * @param \OutputPage $out
-	 * @param \Skin $skin
+	 * @param OutputPage $out
+	 * @param Skin $skin
 	 */
-	public function onBeforePageDisplay( $out, $skin ): void {}
+	public function onBeforePageDisplay( $out, $skin ): void {
+		if ($skin->getUser()->isAllowed('manage-imageStatus')) {
+			$out->addModules( 'ext.imageStatus.admin' );
+		} else {
+			$out->addModuleStyles( 'ext.imageStatus.user.css' );
+		}
+	}
 
 	public function onGetPreferences( $user, &$preferences ) {}
 
