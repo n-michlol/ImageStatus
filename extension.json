@@ -1,6 +1,6 @@
 {
   "name": "ImageStatus",
-  "author": ["Moti"],
+  "author": "[https://www.hamichlol.org.il/User:מוטי Moti]",
   "url": "https://www.mediawiki.org/wiki/Extension:ImageStatus",
   "descriptionmsg": "ImageStatus-desc",
   "license-name": "GPL-2.0-or-later",
@@ -42,7 +42,7 @@
   },
   "AvailableRights": ["manage-imageStatus"],
   "GroupPermissions": {
-    "mangarer-imageStatus": {
+    "aspaklarya2": {
       "manage-imagestatus": true
     }
   },
